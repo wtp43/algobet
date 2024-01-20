@@ -1,18 +1,19 @@
-import '@mantine/core/styles.css';
+import '@mantine/core/styles.layer.css';
 import React from 'react';
-import { MantineProvider, ColorSchemeScript } from '@mantine/core';
+import { AppShell, AppShellHeader, Group, MantineProvider, ColorSchemeScript } from '@mantine/core';
 import { theme } from '../theme';
+import { HeaderMenu } from '@/components/HeaderMenu/HeaderMenu';
 
 export const metadata = {
-  title: 'Mantine Next.js template',
-  description: 'I am using Mantine with Next.js!',
+  title: 'Algobet',
+  description: 'Visualize NBA Stats',
 };
 
 export default function RootLayout({ children }: { children: any }) {
   return (
     <html lang="en">
       <head>
-        <ColorSchemeScript />
+        <ColorSchemeScript defaultColorScheme="auto" />
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta
           name="viewport"
@@ -20,7 +21,14 @@ export default function RootLayout({ children }: { children: any }) {
         />
       </head>
       <body>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <MantineProvider theme={theme}>
+          <AppShell header={{ height: 84 }} navbar={{ width: 200, breakpoint: 'sm' }} padding="md">
+            <AppShellHeader>
+              <HeaderMenu />
+            </AppShellHeader>
+            {children}
+          </AppShell>
+        </MantineProvider>
       </body>
     </html>
   );
