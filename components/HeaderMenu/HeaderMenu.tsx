@@ -5,6 +5,7 @@ import { Container, Anchor, Group, Box } from '@mantine/core';
 // import { useDisclosure } from '@mantine/hooks';
 import { MantineLogo } from '@mantinex/mantine-logo';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import classes from './HeaderMenu.module.css';
 
 const links = [
@@ -14,9 +15,24 @@ const links = [
   { link: '/about', label: 'About' },
 ];
 
+enum LinkIndex {
+  'stats' = 1,
+  'predict' = 2,
+  'about' = 3,
+}
+
 export function HeaderMenu() {
   // const [opened, { toggle }] = useDisclosure(false);
-  const [active, setActive] = useState(0);
+
+  const pathname = usePathname();
+
+  const [active, setActive] = useState(() => {
+    const arr = pathname.split('/');
+    if (arr[1] !== '') {
+      return LinkIndex[arr[1] as keyof typeof LinkIndex];
+    }
+    return 0;
+  });
 
   const mainItems = links.map((item, index) => (
     <Anchor

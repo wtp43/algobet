@@ -1,25 +1,56 @@
 'use client';
 
-import { Title, Text, Anchor } from '@mantine/core';
+import { Container, Text, Button, Group } from '@mantine/core';
+import { GithubIcon } from '@mantinex/dev-icons';
 import classes from './Welcome.module.css';
 
 export function Welcome() {
   return (
-    <>
-      <Title className={classes.title} ta="center" mt={100}>
-        Welcome to{' '}
-        <Text inherit variant="gradient" component="span" gradient={{ from: 'pink', to: 'yellow' }}>
-          AlgoBet
+    <div className={classes.wrapper}>
+      <Container size={700} className={classes.inner}>
+        <h1 className={classes.title}>
+          NBA{' '}
+          <Text component="span" variant="gradient" gradient={{ from: 'blue', to: 'cyan' }} inherit>
+            stat visualization
+          </Text>
+          {' and '}
+          <Text
+            component="span"
+            variant="gradient"
+            gradient={{ from: 'orange', to: 'red' }}
+            inherit
+          >
+            predictions
+          </Text>
+        </h1>
+
+        <Text className={classes.description} color="dimmed">
+          Build fully functional accessible web applications with ease – Mantine includes more than
+          100 customizable components and hooks to cover you in any situation
         </Text>
-      </Title>
-      <Text c="dimmed" ta="center" size="lg" maw={580} mx="auto" mt="xl">
-        {'NBA stat visualization and predictions.\n'}
-        Get started{' '}
-        <Anchor href="https://mantine.dev/guides/next/" size="lg">
-          here
-        </Anchor>
-        .
-      </Text>
-    </>
+
+        <Group className={classes.controls}>
+          <Button
+            size="xl"
+            className={classes.control}
+            variant="gradient"
+            gradient={{ from: 'blue', to: 'cyan' }}
+          >
+            Get started
+          </Button>
+
+          <Button
+            component="a"
+            href="https://github.com/mantinedev/mantine"
+            size="xl"
+            variant="default"
+            className={classes.control}
+            leftSection={<GithubIcon size={20} />}
+          >
+            GitHub
+          </Button>
+        </Group>
+      </Container>
+    </div>
   );
 }
