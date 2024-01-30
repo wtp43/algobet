@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"yarn run next-dev\" \"yarn run fastapi-dev\"",
-    "fastapi-dev": "pip3 install -r requirements.txt && python3 -m uvicorn api.index:app --reload",
+    "fastapi-dev": "python3 -m uvicorn api.index:app --reload",
     "next-dev": "next dev",
     "build": "next build",
     "analyze": "ANALYZE=true next build",
@@ -18,7 +18,9 @@
     "prettier:write": "prettier --write \"**/*.{ts,tsx}\"",
     "test": "npm run prettier:check && npm run lint && npm run typecheck && npm run jest",
     "storybook": "storybook dev -p 6006",
-    "storybook:build": "storybook build"
+    "storybook:build": "storybook build",
+    "create_venv": "python3 -m venv venv",
+    "pip_install": "pip3 install -r requirements.txt"
   },
   "dependencies": {
     "@mantine/core": "^7.4.1",
