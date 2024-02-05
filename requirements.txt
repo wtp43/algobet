@@ -7,4 +7,4 @@ pynvim==0.5
 asyncpg >=0.29
 python-dotenv>=1.0
 strawberry-graphql[fastapi] == 0.219.1
-strawberry-sqlalchemy-mapper == 0.4.1
+strawberry-sqlalchemy-mapper == 0.3.1

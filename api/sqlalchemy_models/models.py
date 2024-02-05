@@ -98,6 +98,17 @@ class Match(Base):
         primaryjoin="Match.home_id == Team.team_id",
         back_populates="match_home",
     )
+    away_players = relationship(
+        "PlayerPerformance",
+        primaryjoin="and_(Match.match_id == PlayerPerformance.match_id, Match.away_id == PlayerPerformance.team_id)",
+        back_populates="match",
+    )
+    home_players = relationship(
+        "PlayerPerformance",
+        primaryjoin="and_(Match.match_id == PlayerPerformance.match_id, Match.home_id== PlayerPerformance.team_id)",
+        back_populates="match",
+        overlaps="away_players",
+    )
 
 
 class Model(Match):
@@ -642,7 +653,7 @@ class OpeningOdd(Base):
     match = relationship("Match")
 
 
-class PlayerPerformance(Base):
+class PlayerPerformance(Player):
     __tablename__ = "player_performance"
 
     player_id = Column(
@@ -661,6 +672,14 @@ class PlayerPerformance(Base):
         ForeignKey("team.team_id"),
         nullable=False,
         server_default=text("nextval('player_performance_team_id_seq'::regclass)"),
+    )
+    match = relationship(
+        "Match",
+        primaryjoin="PlayerPerformance.match_id==Match.match_id",
+    )
+    team = relationship(
+        "TeamName",
+        primaryjoin="PlayerPerformance.team_id==Team.team_id",
     )
     sp = Column(Float, server_default=text("0"))
     inactive = Column(Float, server_default=text("0"))
@@ -699,7 +718,3 @@ class PlayerPerformance(Base):
     pf = Column(Float, server_default=text("0"))
     pts = Column(Float, server_default=text("0"))
     pm = Column(Float, server_default=text("0"))
-
-    match = relationship("Match")
-    player = relationship("Player")
-    team = relationship("Team")
