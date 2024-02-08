@@ -12,6 +12,16 @@ export default withBundleAnalyzer({
   experimental: {
     optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
   },
+  // images: {
+  //   remotePatterns: [
+  //     {
+  //       protocol: 'http',
+  //       hostname: 'localhost',
+  //       port: '3000',
+  //       pathname: '/assets/**',
+  //     },
+  //   ],
+  // },
   rewrites: async () => {
     return [
       {
