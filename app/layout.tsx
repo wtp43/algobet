@@ -7,8 +7,6 @@ import { theme } from '../theme';
 import { HeaderMenu } from '@/components/HeaderMenu/HeaderMenu';
 import { ReactQueryClientProvider } from '@/components/ReactQueryClientProvider/ReactQueryClientProvider';
 
-import { ColorSchemeToggle } from '../components/ColorSchemeToggle/ColorSchemeToggle';
-
 export const metadata = {
   title: 'Algobet',
   description: 'Visualize NBA Stats',
