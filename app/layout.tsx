@@ -1,18 +1,27 @@
 import '@mantine/core/styles.layer.css';
 import 'mantine-datatable/styles.layer.css';
-import React from 'react';
+import * as React from 'react';
 import { AppShell, AppShellHeader, Group, MantineProvider, ColorSchemeScript } from '@mantine/core';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 import { theme } from '../theme';
-import { HeaderMenu } from '@/components/HeaderMenu/HeaderMenu';
+import { HeaderWithMenus } from '@/components/HeaderMenu/HeaderWithMenus';
 import { ReactQueryClientProvider } from '@/components/ReactQueryClientProvider/ReactQueryClientProvider';
+
+import { getBoxscores } from '@/data/async';
 
 export const metadata = {
   title: 'Algobet',
   description: 'Visualize NBA Stats',
 };
 
-export default function RootLayout({ children }: { children: any }) {
+export default async function RootLayout({ children }: { children: any }) {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ['recent_boxscores'],
+    queryFn: async () => getBoxscores({ limit: 1 }),
+  });
   return (
     <html lang="en">
       <head>
@@ -26,15 +35,11 @@ export default function RootLayout({ children }: { children: any }) {
       <body>
         <ReactQueryClientProvider>
           <MantineProvider theme={theme}>
-            <AppShell
-              header={{ height: 84 }}
-              navbar={{ width: 200, breakpoint: 'sm' }}
-              padding="md"
-            >
-              <AppShellHeader>
-                <HeaderMenu />
+            <AppShell padding="md" header={{ height: 64 }}>
+              <AppShellHeader withBorder>
+                <HeaderWithMenus />
               </AppShellHeader>
-              {children}
+              <HydrationBoundary state={dehydrate(queryClient)}>{children}</HydrationBoundary>
             </AppShell>
           </MantineProvider>
           <ReactQueryDevtools />

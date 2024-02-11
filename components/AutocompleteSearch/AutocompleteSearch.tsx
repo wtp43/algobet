@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Combobox, TextInput, useCombobox } from '@mantine/core';
 
-export function AutocompleteSearch({ handleChange, searchItems, form }) {
+interface AutocompleteSearchProps {
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  searchItems: { title: string; id: number }[];
+  form: any;
+}
+
+export function AutocompleteSearch({ handleChange, searchItems, form }: AutocompleteSearchProps) {
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
   });

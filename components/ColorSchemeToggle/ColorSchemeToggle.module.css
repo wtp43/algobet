@@ -1,8 +1,7 @@
 .icon {
-  width: rem(22px);
-  height: rem(22px);
+  width: rem(20px);
+  height: rem(20px);
 }
-
 .dark {
   @mixin dark {
     display: none;

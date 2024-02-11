@@ -14,7 +14,6 @@ export const recentBoxscoreQueryDocument = graphql(/* GraphQL */ `
       homePlayers {
         edges {
           node {
-            playerId
             playerName
             ast
             blkPct
@@ -37,7 +36,6 @@ export const recentBoxscoreQueryDocument = graphql(/* GraphQL */ `
       awayPlayers {
         edges {
           node {
-            playerId
             playerName
             ast
             blkPct

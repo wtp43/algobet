@@ -1,56 +1,52 @@
-'use client';
-
-import { Container, Text, Button, Group } from '@mantine/core';
-import { GithubIcon } from '@mantinex/dev-icons';
+import { Title, Text, Button, Container } from '@mantine/core';
+import { Dots } from './Dots';
 import classes from './Welcome.module.css';
 
 export function Welcome() {
   return (
-    <div className={classes.wrapper}>
-      <Container size={700} className={classes.inner}>
-        <h1 className={classes.title}>
+    <Container className={classes.wrapper} size="md">
+      <Dots className={classes.dots} style={{ left: 0, top: 0 }} x={4} y={14} />
+      <Dots className={classes.dots} style={{ left: 40, top: 0 }} x={4} y={10} />
+      <Dots className={classes.dots} style={{ right: -200, top: 40 }} x={5} y={10} />
+      <div className={classes.inner}>
+        <Title className={classes.title}>
           NBA{' '}
-          <Text component="span" variant="gradient" gradient={{ from: 'blue', to: 'cyan' }} inherit>
+          <Text
+            component="span"
+            className={classes.highlight}
+            variant="gradient"
+            gradient={{ from: 'blue', to: 'cyan' }}
+            inherit
+          >
             stat visualization
           </Text>
           {' and '}
           <Text
             component="span"
+            className={classes.highlight}
             variant="gradient"
-            gradient={{ from: 'orange', to: 'red' }}
+            gradient={{ from: 'pink', to: 'purple' }}
             inherit
           >
             predictions
           </Text>
-        </h1>
+        </Title>
 
-        <Text className={classes.description} color="dimmed">
-          Build fully functional accessible web applications with ease – Mantine includes more than
-          100 customizable components and hooks to cover you in any situation
-        </Text>
+        <Container p={0} size={600}>
+          <Text size="lg" c="dimmed" className={classes.description}>
+            Visualize historical data of NBA players or teams
+          </Text>
+        </Container>
 
-        <Group className={classes.controls}>
-          <Button
-            size="xl"
-            className={classes.control}
-            variant="gradient"
-            gradient={{ from: 'blue', to: 'cyan' }}
-          >
-            Get started
+        <div className={classes.controls}>
+          <Button className={classes.control} radius="md" size="lg" variant="default" color="gray">
+            Book a demo
           </Button>
-
-          <Button
-            component="a"
-            href="https://github.com/mantinedev/mantine"
-            size="xl"
-            variant="default"
-            className={classes.control}
-            leftSection={<GithubIcon size={20} />}
-          >
-            GitHub
+          <Button className={classes.control} radius="md" size="lg">
+            Purchase a license
           </Button>
-        </Group>
-      </Container>
-    </div>
+        </div>
+      </div>
+    </Container>
   );
 }
