@@ -1,11 +1,22 @@
 .wrapper {
   position: relative;
+  /* padding-top: rem(120px); */
+  /* padding-bottom: rem(80px); */
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    /* padding-top: rem(80px); */
+    /* padding-bottom: rem(60px); */
+  }
+}
+.mainContainer {
+  justify-content: space-between;
+  position: relative;
   padding-top: rem(120px);
   padding-bottom: rem(80px);
 
   @media (max-width: $mantine-breakpoint-sm) {
-    padding-top: rem(80px);
-    padding-bottom: rem(60px);
+    /* margin-top: var(--mantine-spacing-lg); */
+    /* margin-bottom: var(--mantine-spacing-md); */
   }
 }
 

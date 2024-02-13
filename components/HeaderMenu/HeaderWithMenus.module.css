@@ -6,8 +6,8 @@
   display: flex;
   align-items: center;
   height: 100%;
-  padding-left: var(--mantine-spacing-md);
-  padding-right: var(--mantine-spacing-md);
+  padding-left: var(--mantine-spacing-xs);
+  padding-right: var(--mantine-spacing-xs);
   text-decoration: none;
   color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
   font-weight: 500;
@@ -51,8 +51,8 @@
   }
 }
 .icon {
-  width: rem(22px);
-  height: rem(22px);
+  align-items: center;
+  margin-top: var(--mantine-spacing-xs);
 }
 .dropdownFooter {
   background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-7));

@@ -17,6 +17,7 @@ import {
   Drawer,
   Collapse,
   ScrollArea,
+  ActionIcon,
   rem,
   useMantineTheme,
 } from '@mantine/core';
@@ -97,16 +98,24 @@ export function HeaderWithMenus() {
 
   return (
     <Box pb={120}>
-      <Container size="md" px={0}>
+      <Container size="80%" px={0}>
         <header className={classes.header}>
           <Group justify="space-between" h="100%" className={classes.logoGroup}>
             <Group justify="flex-start" h="100%">
-              <MantineLogo size={30} />
-
-              <Group h="100%" gap={0} visibleFrom="sm">
-                <Anchor component={Link} href="/" key="home" className={classes.link}>
-                  Home
-                </Anchor>
+              <Link href="/">
+                <Image
+                  className={classes.icon}
+                  priority
+                  src="/logo.png"
+                  height={43}
+                  width={114}
+                  alt="logo"
+                />
+              </Link>
+              <Group h="100%" gap={0} visibleFrom="md">
+                {/* <Anchor component={Link} href="/" key="home" className={classes.link}> */}
+                {/*   Home */}
+                {/* </Anchor> */}
                 <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
                   <HoverCard.Target>
                     <Anchor component={Link} href="/stats" key="stats" className={classes.link}>
@@ -152,19 +161,27 @@ export function HeaderWithMenus() {
                   </HoverCard.Dropdown>
                 </HoverCard>
 
+                <Anchor
+                  component={Link}
+                  href="/feature-engineering"
+                  key="feature-engineering"
+                  className={classes.link}
+                >
+                  Feature Engineering
+                </Anchor>
                 <Anchor component={Link} href="/predict" key="predict" className={classes.link}>
                   Predict
                 </Anchor>
-                <Anchor component={Link} href="/about" key="about" className={classes.link}>
-                  About
+                <Anchor component={Link} href="/blog" key="blog" className={classes.link}>
+                  Blog
                 </Anchor>
               </Group>
             </Group>
 
-            <Group visibleFrom="sm">
+            <Group visibleFrom="md">
               <Button
                 component="a"
-                href="https://github.com/mantinedev/mantine"
+                href={process.env.NEXT_PUBLIC_GRAPHQL_API}
                 size="xs"
                 variant="default"
                 className={classes.control}
@@ -172,20 +189,22 @@ export function HeaderWithMenus() {
               >
                 GraphQL
               </Button>
-              <Button
-                component="a"
-                href="https://github.com/mantinedev/mantine"
-                size="xs"
-                variant="default"
+              <ActionIcon
                 className={classes.control}
-                leftSection={<GithubIcon size={20} />}
+                component={Link}
+                href={process.env.NEXT_PUBLIC_APP_GITHUB_URL}
+                variant="outline"
+                color="blue"
+                size="lg"
+                aria-label="Toggle color scheme"
+                radius="md"
               >
-                Source Code
-              </Button>
+                <GithubIcon size={20} />
+              </ActionIcon>
               <ColorSchemeToggle />
             </Group>
 
-            <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />
+            <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="md" />
           </Group>
         </header>
         {/* Not yet implemented for mobile */}

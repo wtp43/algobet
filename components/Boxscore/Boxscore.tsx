@@ -4,38 +4,38 @@ import sortBy from 'lodash/sortBy';
 import { DataTable, useDataTableColumns, type DataTableSortStatus } from 'mantine-datatable';
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
-import { useSuspenseQuery } from '@tanstack/react-query';
 import { Carousel } from '@mantine/carousel';
 import '@mantine/carousel/styles.css';
 import { Group, Button, Container, Paper } from '@mantine/core';
-import { PlayerPerformance } from '@/gql/graphql';
-import { getBoxscores, flattenPlayers } from '@/data/async';
+import { PlayerPerformanceTable } from '@/types/types';
 
 export const dynamic = 'auto';
-export function Boxscore() {
-  const [sortStatus, setSortStatus] = useState<DataTableSortStatus<any>>({
+
+interface BoxscoreProps {
+  data: PlayerPerformanceTable[];
+}
+
+export function Boxscore({ data }: BoxscoreProps) {
+  const [sortStatus, setSortStatus] = useState<DataTableSortStatus<PlayerPerformanceTable>>({
     columnAccessor: 'playerName',
     direction: 'asc',
   });
-  const { error, data, isFetching } = useSuspenseQuery({
-    queryKey: ['recent_boxscores'],
-    queryFn: async () => getBoxscores({ limit: 1 }),
-  });
 
-  const [records, setRecords] = useState<any[]>(
-    flattenPlayers(data.getMatches[0]?.homePlayers?.edges)
-  );
+  // const [records, setRecords] = useState<any[]>(
+  //   flattenPlayers(data.getMatches[0]?.homePlayers?.edges)
+  // );
+  const [records, setRecords] = useState<PlayerPerformanceTable[]>(data);
 
   useEffect(() => {
-    const sorted = sortBy(records, sortStatus.columnAccessor) as any[];
+    const sorted = sortBy(records, sortStatus.columnAccessor) as PlayerPerformanceTable[];
     setRecords(sortStatus.direction === 'desc' ? sorted.reverse() : sorted);
   }, [sortStatus]);
 
-  const handleSortStatusChange = (status: DataTableSortStatus<any>) => {
+  const handleSortStatusChange = (status: DataTableSortStatus<PlayerPerformanceTable>) => {
     // setPage(1);
     setSortStatus(status);
   };
-  function getColumns(row: any) {
+  function getColumns(row: PlayerPerformanceTable) {
     const columns = [];
     if (row === undefined) {
       return [];
@@ -64,10 +64,11 @@ export function Boxscore() {
   }
   const key = 'toggle-home-players-columns';
 
-  const { effectiveColumns, resetColumnsWidth, resetColumnsToggle } = useDataTableColumns<any>({
-    key,
-    columns: getColumns(data?.getMatches[0]?.homePlayers?.edges[0].node),
-  });
+  const { effectiveColumns, resetColumnsWidth, resetColumnsToggle } =
+    useDataTableColumns<PlayerPerformanceTable>({
+      key,
+      columns: records ? getColumns(records[0]) : [],
+    });
   console.count('counter');
   return (
     <Container>
@@ -90,7 +91,6 @@ export function Boxscore() {
           //   // return typeof data === 'string' ? data : dayjs(data);
           //   return datatype;
           // }}
-          fetching={isFetching}
           idAccessor="playerName"
           sortStatus={sortStatus}
           onSortStatusChange={handleSortStatusChange}
