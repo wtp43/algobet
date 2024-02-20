@@ -192,7 +192,7 @@ export function HeaderWithMenus() {
               <ActionIcon
                 className={classes.control}
                 component={Link}
-                href={process.env.NEXT_PUBLIC_APP_GITHUB_URL}
+                href={process.env.NEXT_PUBLIC_APP_GITHUB_URL ?? 'https://github.com'}
                 variant="outline"
                 color="blue"
                 size="lg"

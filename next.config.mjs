@@ -12,6 +12,8 @@ export default withBundleAnalyzer({
   experimental: {
     optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
   },
+  // env: {
+  //   BASE_URL: process.env.BASE_URL,
   // images: {
   //   remotePatterns: [
   //     {

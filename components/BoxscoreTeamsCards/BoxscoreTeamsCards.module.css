@@ -68,7 +68,10 @@
   margin-right: var(--mantine-spacing-xl);
 }
 .cardContainer {
-  padding-top: var(--mantine-spacing-lg);
   justify-content: space-between;
   position: relative;
+  padding: var(--mantine-spacing-xs);
+  padding-left: calc(var(--mantine-spacing-xl) * 2);
+  padding-right: calc(var(--mantine-spacing-xl) * 2);
+  flex-wrap: nowrap;
 }

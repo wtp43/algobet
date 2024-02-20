@@ -60,6 +60,8 @@ export const recentBoxscoreQueryDocument = graphql(/* GraphQL */ `
       awayPts
       homeMl
       awayMl
+      prevHomeFgPctEma3
+      prevHomeTovPctEma3
     }
   }
 `);

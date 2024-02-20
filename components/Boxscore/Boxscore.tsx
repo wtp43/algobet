@@ -8,6 +8,7 @@ import { Carousel } from '@mantine/carousel';
 import '@mantine/carousel/styles.css';
 import { Group, Button, Container, Paper } from '@mantine/core';
 import { PlayerPerformanceTable } from '@/types/types';
+import classes from './Boxscore.module.css';
 
 export const dynamic = 'auto';
 
@@ -17,8 +18,8 @@ interface BoxscoreProps {
 
 export function Boxscore({ data }: BoxscoreProps) {
   const [sortStatus, setSortStatus] = useState<DataTableSortStatus<PlayerPerformanceTable>>({
-    columnAccessor: 'playerName',
-    direction: 'asc',
+    columnAccessor: 'pts',
+    direction: 'desc',
   });
 
   // const [records, setRecords] = useState<any[]>(
@@ -71,15 +72,16 @@ export function Boxscore({ data }: BoxscoreProps) {
     });
   console.count('counter');
   return (
-    <Container>
+    <Container size="80%" className={classes.boxscoreContainer}>
       {/* <Carousel> */}
       {/* <Carousel.Slide> */}
       <div>
         <DataTable
           textSelectionDisabled
-          height={250}
+          height={200}
           fz="xs"
           highlightOnHover
+          borderRadius="sm"
           withTableBorder
           withColumnBorders
           pinFirstColumn
@@ -95,9 +97,9 @@ export function Boxscore({ data }: BoxscoreProps) {
           sortStatus={sortStatus}
           onSortStatusChange={handleSortStatusChange}
         />
-        <Group justify="right">
-          <Button onClick={resetColumnsWidth}>Reset</Button>
-        </Group>
+        {/* <Group justify="right"> */}
+        {/*   <Button onClick={resetColumnsWidth}>Reset</Button> */}
+        {/* </Group> */}
       </div>
       {/*   </Carousel.Slide> */}
       {/* </Carousel> */}

@@ -13,10 +13,7 @@ export default async function HomePage() {
   return (
     <>
       <Container size="100%" px={0}>
-        <AppShellMain>
-          <Welcome />
-          <Boxscore />
-        </AppShellMain>
+        <AppShellMain />
       </Container>
     </>
   );

@@ -54,7 +54,14 @@ export function HeaderMenu() {
       <header className={classes.header}>
         <Container className={classes.inner}>
           <Link href="/">
-            <Image priority src="/logol.png" height={130} width={130} alt="logo" />
+            <Image
+              className={classes.logo}
+              priority
+              src="/logol.png"
+              height={80}
+              width={80}
+              alt="logo"
+            />
           </Link>
           <Box className={classes.links} visibleFrom="sm">
             <Group gap={0} justify="flex-end" className={classes.mainLinks}>

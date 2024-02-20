@@ -1,8 +1,7 @@
 .header {
-  height: rem(84px);
-  margin-bottom: rem(120px);
+  height: rem(90px);
+  margin-bottom: rem(0px);
   background-color: var(--mantine-color-body);
-  border-bottom: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
 }
 
 .inner {
@@ -22,6 +21,14 @@
 
 .mainLinks {
   margin-right: calc(var(--mantine-spacing-sm) * -1);
+}
+.logo {
+  height: rem(64px);
+  display: flex;
+  width: auto;
+  vertical-align: middle;
+  justify-content: center;
+  /* margin-bottom: rem(25px); */
 }
 
 .mainLink {

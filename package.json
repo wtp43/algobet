@@ -36,6 +36,7 @@
     "@tabler/icons-react": "^2.40.0",
     "@tanstack/react-query": ">=5.18.0",
     "@tanstack/react-query-devtools": ">=5.18.0",
+    "@visx/visx": "^3.8.0",
     "clsx": "^2.1.0",
     "concurrently": "^8.0.1",
     "dayjs": "^1.11.10",

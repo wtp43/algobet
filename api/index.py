@@ -13,6 +13,7 @@ app = FastAPI()
 
 origins = [
     "http://localhost:3000",
+    "https://www.algobet.app",
 ]
 
 
