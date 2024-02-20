@@ -20,8 +20,8 @@ import { Boxscore } from '@/components/Boxscore/Boxscore';
 import { BoxscoreTeamsCards } from '@/components/BoxscoreTeamsCards/BoxscoreTeamsCards';
 import { StatsGrid } from '@/components/StatsGrid/StatsGrid';
 import classes from './page.module.css';
-import { testdata } from '@/constants/test';
-import { LineChart } from '@/components/LineChart/LineChart';
+// import { testdata } from '@/constants/test';
+// import { LineChart } from '@/components/LineChart/LineChart';
 import { ModelTable } from '@/types/types';
 // import { MetaData } from 'next';
 
