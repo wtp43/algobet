@@ -1,18 +1,12 @@
 import os
-from os.path import dirname, join
 
-from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.ext.asyncio import (AsyncSession, async_sessionmaker,
                                     create_async_engine)
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-dotenv_path = join(dirname(__file__), ".env")
-load_dotenv(dotenv_path)
-
-
 # Async database connection
-SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
+SQLALCHEMY_DATABASE_URL = os.environ.get("DATABASE_URL")
 engine = create_async_engine(
     SQLALCHEMY_DATABASE_URL,
     # useful for debugging db calls
@@ -35,7 +29,7 @@ async def get_session() -> AsyncSession:
 
 
 # Synchronous database connection
-SQLALCHEMY_DATABASE_URL2 = os.getenv("DATABASE_URL2")
+SQLALCHEMY_DATABASE_URL2 = os.environ.get("DATABASE_URL2")
 sync_engine = create_engine(SQLALCHEMY_DATABASE_URL2)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=sync_engine)
 
