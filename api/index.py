@@ -1,12 +1,13 @@
-from crud import crud
-from db.database import SessionLocal, get_session
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from graphql_schemas import schema
-from pydantic_schemas import pydantic_schemas
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import Session
 from strawberry.fastapi import GraphQLRouter
+
+from .crud import crud
+from .db.database import SessionLocal, get_session
+from .graphql_schemas import schema
+from .pydantic_schemas import pydantic_schemas
 
 app = FastAPI()
 
