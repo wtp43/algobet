@@ -1,0 +1,14 @@
+[build]
+builder = "NIXPACKS"
+buildImage = 'ghcr.io/railwayapp/nixpacks:latest'
+
+[build.nixpacksPlan.phases.setup]
+nixPkgs = ['...', 'python38', 'python38Packages.pip']
+
+[build.nixpacksPlan.phases.install]
+dependsOn = ["setup"]
+cmds =["echo install phase","pip install -r app/requirements.txt"]
+
+[deploy]
+startCommand = "python3 -m uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+
