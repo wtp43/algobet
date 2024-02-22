@@ -1,9 +1,8 @@
 from typing import List
 
+from app.core.sqlalchemy_models import models
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
-
-from ..sqlalchemy_models import models
 
 
 async def get_teams(session: AsyncSession):

@@ -2,15 +2,14 @@ from datetime import datetime
 from typing import List, Optional
 
 import strawberry
+from app.core.sqlalchemy_models import models
+from app.dependencies import async_session, get_session
 from fastapi import Depends
 from sqlalchemy import and_, or_
 from sqlalchemy.future import select
 from strawberry.types import Info
 from strawberry_sqlalchemy_mapper import (StrawberrySQLAlchemyLoader,
                                           StrawberrySQLAlchemyMapper)
-
-from ..db.database import async_session, get_session
-from ..sqlalchemy_models import models
 
 strawberry_sqlalchemy_mapper = StrawberrySQLAlchemyMapper()
 
