@@ -1,0 +1,11 @@
+NIXPACKS_PYTHON_VERSION="3.11"
+[build]
+builder = "NIXPACKS"
+
+[phases.install]
+cmds =["pip install -r app/requirements.txt"]
+
+
+[start]
+cmd = "python -m uvicorn app.main:app --reload"
+
