@@ -25,7 +25,7 @@ export default function PredictPage() {
       <Button
         className={classes.button}
         component={Link}
-        href={process.env.NEXT_PUBLIC_ML_GITHUB_URL}
+        href={process.env.NEXT_PUBLIC_ML_GITHUB_URL ?? 'https://github.com'}
         variant="default"
         radius="md"
         leftSection={<GithubIcon size={15} />}

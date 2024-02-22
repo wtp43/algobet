@@ -8,9 +8,13 @@ export const flattenPlayers = (arr: any) => (arr === undefined ? [] : arr.map((e
 
 export async function getBoxscores({ limit = 1 }: { limit?: number }) {
   //todo: try catch exceptions
-  const data = await request(process.env.NEXT_PUBLIC_GRAPHQL_API, recentBoxscoreQueryDocument, {
-    limit,
-  });
+  const data = await request(
+    process.env.NEXT_PUBLIC_GRAPHQL_API ?? 'https://www.algobet.app/grahql',
+    recentBoxscoreQueryDocument,
+    {
+      limit,
+    }
+  );
 
   return data;
 }
