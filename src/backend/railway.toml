@@ -9,6 +9,6 @@ dependsOn = ["setup"]
 cmds =["echo install phase","pip install -r app/requirements.txt"]
 
 
-[start]
+[build.nixPakcsPlan.phases.start]
 cmd = "python -m uvicorn app.main:app --reload"
 
