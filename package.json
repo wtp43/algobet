@@ -21,7 +21,7 @@
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "create_venv": "python3 -m venv venv",
-    "pip_install": "pip3 install -r api/requirements.txt",
+    "pip_install": "pip3 install -r backend/app/requirements.txt",
     "codegen": "graphql-codegen --watch codegen.ts"
   },
   "dependencies": {

@@ -25,7 +25,7 @@ export default function PredictPage() {
       <Button
         className={classes.button}
         component={Link}
-        href="https://github.com/WJT98/NBA_ML"
+        href={process.env.NEXT_PUBLIC_ML_GITHUB_URL}
         variant="default"
         radius="md"
         leftSection={<GithubIcon size={15} />}
