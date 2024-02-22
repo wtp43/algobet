@@ -1,10 +1,15 @@
+[build]
+builder = "NIXPACKS"
+
+[build.nixpacksPlan.phases.setup]
 NIXPACKS_PYTHON_VERSION="3.11"
 providers = ["...", "python"]
 
-[phases.install]
+[build.nixpacksPlan.phases.install]
+dependsOn = ["setup"]
 cmds =["echo install phase","pip install -r app/requirements.txt"]
 
 
-[start]
+[deploy]
 cmd = "python -m uvicorn app.main:app --reload"
 
