@@ -1,0 +1,17 @@
+{
+  "name": "algobetapi",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "fastapi-dev": "python3 -m uvicorn app.main:app --reload",
+    "create_venv": "python3 -m venv venv",
+    "pip_install": "pip3 install -r backend/app/requirements.txt"
+  },
+  "dependencies": {
+    "clsx": "^2.1.0",
+    "concurrently": "^8.0.1",
+    "graphql": "^16.8.1",
+    "vercel": "^33.5.1"
+  },
+  "packageManager": "yarn@4.1.0"
+}

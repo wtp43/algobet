@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"yarn run next-dev\" \"yarn run fastapi-dev\"",
-    "fastapi-dev": "cd backend && python3 -m uvicorn app.main:app --reload",
-    "next-dev": "next dev",
+    "dev": "next dev",
     "build": "next build",
-    "prod": "concurrently \"yarn run start\" \"yarn run fastapi-dev\"",
+    "prod": "yarn run start",
     "analyze": "ANALYZE=true next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
