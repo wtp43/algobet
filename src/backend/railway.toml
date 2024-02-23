@@ -1,5 +1,6 @@
 [build]
 builder = "NIXPACKS"
+buildImage = 'ghcr.io/railwayapp/nixpacks:latest'
 
 [build.nixpacksPlan.phases.setup]
 nixPkgs = ['...', 'python3', 'python311Packages.pip']
