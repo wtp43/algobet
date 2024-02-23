@@ -3,6 +3,8 @@ FROM python:3.9
 
 # 
 WORKDIR /code
+ARG PORT
+RUN echo "Port is $PORT"
 
 # 
 COPY ./requirements.txt /code/requirements.txt
