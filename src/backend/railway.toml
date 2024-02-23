@@ -3,7 +3,6 @@ builder = "NIXPACKS"
 
 [build.nixpacksPlan.phases.setup]
 providers = ["...", "python"]
-nixPkgs = ['...', 'python3', 'python311Packages.pip']
 
 [build.nixpacksPlan.phases.install]
 dependsOn = ["setup"]
