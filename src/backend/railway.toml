@@ -2,12 +2,12 @@
 builder = "NIXPACKS"
 
 [build.nixpacksPlan.phases.setup]
-nixPkgs = ['...', 'python', 'python311Packages.pip']
+nixPkgs = ['...', 'python3', 'python311Packages.pip']
 
 [build.nixpacksPlan.phases.install]
 dependsOn = ["setup"]
-cmds =["echo install phase","python -m pip install --upgrade pip","pip install -r app/requirements.txt"]
+cmds =["echo install phase","pip install -r app/requirements.txt"]
 
 [deploy]
-startCommand = "python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+startCommand = "python3 -m uvicorn app.main:app --host 0.0.0.0 --port $PORT"
 
