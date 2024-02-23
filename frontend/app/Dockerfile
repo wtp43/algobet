@@ -1,5 +1,8 @@
 FROM node:18-alpine AS base
-
+ARG NEXT_PUBLIC_APP_GITHUB_URL
+ARG NEXT_PUBLIC_ETL_GITHUB_URL
+ARG NEXT_PUBLIC_GRAPHQL_API
+ARG NEXT_PUBLIC_ML_GITHUB_URL
 # Install dependencies only when needed
 FROM base AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
@@ -54,9 +57,9 @@ COPY --from=builder --chown=nextjs:nodejs /code/.next/static ./.next/static
 
 USER nextjs
 
-EXPOSE 3000
 ARG PORT
-ENV PORT $PORT
+EXPOSE ${PORT} 
+
 
 # set hostname to localhost
 ENV HOSTNAME "0.0.0.0"
