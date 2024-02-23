@@ -5,7 +5,7 @@ builder = "NIXPACKS"
 providers = ["...", "python"]
 nixPkgs = ['...', 'python3', 'python311Packages.pip']
 
-[phases.install]
+[phases.python_install]
 dependsOn = ["setup"]
 cmds =["echo install phase","python -m pip install --upgrade pip","pip install -r app/requirements.txt"]
 
