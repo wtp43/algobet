@@ -21,7 +21,6 @@ import {
   rem,
   useMantineTheme,
 } from '@mantine/core';
-import { MantineLogo } from '@mantinex/mantine-logo';
 import { useDisclosure } from '@mantine/hooks';
 import {
   IconNotification,
