@@ -1,0 +1,12 @@
+[build]
+builder = "NIXPACKS"
+
+[phases.install]
+cmds ="yarn install"
+
+[build]
+cmd ="yarn build"
+
+[start]
+cmd = "yarn prod"
+

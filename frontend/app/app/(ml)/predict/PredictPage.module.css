@@ -1,0 +1,10 @@
+.button {
+  margin-top: var(--mantine-spacing-sm);
+  font-weight: 500;
+  font-size: var(--mantine-font-size-md);
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    /* height: rem(42px); */
+    /* width: 100%; */
+  }
+}
