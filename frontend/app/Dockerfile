@@ -52,6 +52,7 @@ RUN chown nextjs:nodejs .next
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
+COPY --from=builder /code/next.config.mjs ./
 COPY --from=builder --chown=nextjs:nodejs /code/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /code/.next/static ./.next/static
 
@@ -66,4 +67,4 @@ ENV HOSTNAME "0.0.0.0"
 
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output
-CMD yarn start -p $PORT
+CMD PORT=${PORT} HOSTNAME=${HOSTNAME} node server.js 
