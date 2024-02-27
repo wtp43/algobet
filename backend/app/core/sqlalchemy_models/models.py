@@ -40,6 +40,11 @@ class Player(Base):
         primary_key=True,
         server_default=text("nextval('player_player_id_seq'::regclass)"),
     )
+    player_matches = relationship(
+        "PlayerPerformance",
+        primaryjoin="Player.player_id == PlayerPerformance.player_id",
+        back_populates="player_info",
+    )
     player_name = Column(Text, nullable=False)
     bbref_endpoint = Column(Text, nullable=False)
 
@@ -653,9 +658,13 @@ class OpeningOdd(Base):
     match = relationship("Match")
 
 
-class PlayerPerformance(Player):
+class PlayerPerformance(Base):
     __tablename__ = "player_performance"
-
+    player_info = relationship(
+        "Player",
+        primaryjoin="Player.player_id == PlayerPerformance.player_id",
+        back_populates="player_matches",
+    )
     player_id = Column(
         ForeignKey("player.player_id"),
         primary_key=True,
