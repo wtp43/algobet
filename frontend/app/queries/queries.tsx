@@ -1,5 +1,33 @@
 import { graphql } from '@/gql/gql';
 
+export const playerStatsQueryDocument = graphql(/* GraphQL */ `
+  query playerStatsQuery(
+    $limit: Int
+    $startDate: String = ""
+    $endDate: String = ""
+    $playerId: [Int!] = []
+  ) {
+    getPlayerPerformances(
+      limit: $limit
+      startDate: $startDate
+      endDate: $endDate
+      playerId: $playerId
+    ) {
+      playerInfo {
+        playerName
+        playerId
+      }
+      match {
+        date
+      }
+      pts
+      team {
+        teamName
+      }
+    }
+  }
+`);
+
 export const recentBoxscoreQueryDocument = graphql(/* GraphQL */ `
   query recentBoxscoreQuery($limit: Int!) {
     getMatches(limit: $limit) {
@@ -14,7 +42,9 @@ export const recentBoxscoreQueryDocument = graphql(/* GraphQL */ `
       homePlayers {
         edges {
           node {
-            playerName
+            playerInfo {
+              playerName
+            }
             ast
             blkPct
             drb
@@ -36,7 +66,10 @@ export const recentBoxscoreQueryDocument = graphql(/* GraphQL */ `
       awayPlayers {
         edges {
           node {
-            playerName
+            playerInfo {
+              playerName
+            }
+            playerId
             ast
             blkPct
             drb

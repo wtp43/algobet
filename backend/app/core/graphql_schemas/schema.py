@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List, Optional
+from typing import List, Optional, Union
 
 import strawberry
 from app.core.sqlalchemy_models import models
@@ -106,8 +106,8 @@ class Query:
             )
         if start_date and end_date:
             try:
-                datetime_start = datetime.strptime(start_date, "%y-%m-%d")
-                datetime_end = datetime.strptime(end_date, "%y-%m-%d")
+                datetime_start = datetime.strptime(start_date, "%Y-%m-%d").date()
+                datetime_end = datetime.strptime(end_date, "%Y-%m-%d").date()
             except Exception as e:
                 raise ValueError(e) from e
 
@@ -134,17 +134,35 @@ class Query:
             raise RuntimeError(e) from e
 
     @strawberry.field
-    async def get_players(
+    async def get_player_performances(
         self,
         info: Info,
-        match_id: int,
-        team_id: Optional[int] = None,
+        player_id: List[int],
+        limit: Optional[int] = 10,
+        start_date: Optional[str] = None,
+        end_date: Optional[str] = None,
     ) -> List[PlayerPerformance]:
-        q = select(models.PlayerPerformance).where(
-            models.PlayerPerformance.match_id == match_id
+
+        q = (
+            select(models.PlayerPerformance, models.Match)
+            .join(models.Match)
+            .where(models.PlayerPerformance.player_id.in_(player_id))
+            .order_by(models.Model.date.asc())
+            .limit(limit)
         )
-        if team_id:
-            q = q.where(models.PlayerPerformance.team_id == team_id)
+        if start_date and end_date:
+            try:
+                datetime_start = datetime.strptime(start_date, "%Y-%m-%d").date()
+                print(datetime_start)
+
+                if end_date:
+                    datetime_end = datetime.strptime(end_date, "%Y-%m-%d").date()
+                else:
+                    datetime_end = datetime.today()
+                q = q.where(models.Match.date.between(datetime_start, datetime_end))
+
+            except Exception as e:
+                raise ValueError(e) from e
         try:
             result = await info.context["session"].scalars(q)
             return result.all()

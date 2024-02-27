@@ -34,3 +34,5 @@ export interface ModelTable
       awayTeam?: TeamNameTable;
     }
   > {}
+
+export type TableData = PlayerPerformanceTable | ModelTable;
