@@ -152,3 +152,20 @@ export const teamInfo = {
   UTA: { id: 29, abbr: 'UTA', name: 'Utah Jazz', src: '/UTA.png' },
   WAS: { id: 30, abbr: 'WAS', name: 'Washington Wizards', src: '/WAS.png' },
 };
+
+export const colInfo = {
+  pts: { name: 'PTS', desc: 'Points Scored' },
+  fg: { name: 'FG', desc: 'Field Goals Made' },
+  threep: { name: '3P', desk: '3-Pointers Made' },
+  ft: { name: 'FT', desk: 'Free Throws Made' },
+  ast: { name: 'AST', desk: 'Assists' },
+  drb: { name: 'DRB', desk: 'Defensive Rebounds' },
+  tov: { name: 'TOV', desk: 'Turnovers' },
+  stl: { name: 'STL', desk: 'Steals' },
+  fga: { name: 'FGA', desk: 'Field Goals Attempted' },
+  fta: { name: 'FTA', desk: 'Free Throws Attempted' },
+  orb: { name: 'ORB', desk: 'Offensive Rebounds' },
+  threepa: { name: '3PA', desk: '3-Pointers Attempted' },
+  trb: { name: 'TRB', desk: 'Total Rebound %' },
+  playerName: { name: 'Player', desk: 'Player ' },
+};

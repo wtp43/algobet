@@ -1,0 +1,7 @@
+.chartContainer {
+  position: relative;
+  height: rem(300px);
+  /* max-width: rem(833px); */
+  width: 100%;
+  margin-top: var(--mantine-spacing-lg);
+}

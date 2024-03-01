@@ -23,58 +23,57 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import {
-  IconNotification,
   IconCode,
   IconBook,
   IconChartPie3,
-  IconFingerprint,
-  IconCoin,
   IconChevronDown,
   IconBrandGraphql,
 } from '@tabler/icons-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { GithubIcon } from '@mantinex/dev-icons';
-import { usePathname } from 'next/navigation';
 import classes from './HeaderWithMenus.module.css';
 import { ColorSchemeToggle } from '@/components/ColorSchemeToggle/ColorSchemeToggle';
 
+//todo: jupyter notebook to html
+//link to github for now
 const dropdownData = [
   {
-    icon: IconCode,
-    title: 'Open source',
-    description: 'This Pokémon’s cry is very loud and distracting',
-  },
-  {
-    icon: IconCoin,
-    title: 'Free for everyone',
-    description: 'The fluid of Smeargle’s tail secretions changes',
+    icon: IconChartPie3,
+    title: 'Exploratory Data Analysis',
+    description: 'Analyze historical NBA to gain insight on Basketball as a sport. ',
+    // link: '/ml/exploratory-data-analysis',
+    link: 'https://github.com/wtp43/NBA-Machine-Learning-Research',
   },
   {
     icon: IconBook,
-    title: 'Documentation',
-    description: 'Yanma is capable of seeing 360 degrees without',
+    title: 'Feature Engineering',
+    description: 'Process new features from data for use in machine learning models.',
+    // link: '/ml/feature-engineering',
+    //
+    link: 'https://github.com/wtp43/NBA-ETL-Pipeline',
   },
   {
-    icon: IconFingerprint,
-    title: 'Security',
-    description: 'The shell’s rounded shape and the grooves on its.',
+    icon: IconCode,
+    title: 'Machine Learning Models',
+    description:
+      'Train models solely for prediction performance determined by time series cross-validation.',
+    // 'Fine tune and train models for prediction performance. Best prediction performance determined by time series cross-validation.',
+    // link: '/ml/model-training',
+    link: 'https://github.com/wtp43/NBA-Machine-Learning-Research',
   },
   {
-    icon: IconChartPie3,
-    title: 'Analytics',
-    description: 'This Pokémon uses its flying ability to quickly chase',
-  },
-  {
-    icon: IconNotification,
-    title: 'Notifications',
-    description: 'Combusken battles with the intensely hot flames it spews',
+    icon: IconCode,
+    title: 'Predictions and Bet Sizing',
+    description:
+      'Under construction: get predictions for value bets and bet sizing given recent stats.',
+    link: '/ml/predict',
   },
 ];
 
 export function HeaderWithMenus() {
-  const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
-  const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
+  // const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
+  // const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
   const theme = useMantineTheme();
 
   const links = dropdownData.map((item) => (
@@ -83,14 +82,16 @@ export function HeaderWithMenus() {
         <ThemeIcon size={34} variant="default" radius="md">
           <item.icon style={{ width: rem(22), height: rem(22) }} color={theme.colors.blue[6]} />
         </ThemeIcon>
-        <div>
-          <Text size="sm" fw={500}>
-            {item.title}
-          </Text>
-          <Text size="xs" c="dimmed">
-            {item.description}
-          </Text>
-        </div>
+        <Anchor component={Link} underline="never" href={item.link} key={item.title}>
+          <div>
+            <Text size="sm" fw={500}>
+              {item.title}
+            </Text>
+            <Text size="xs" c="dimmed">
+              {item.description}
+            </Text>
+          </div>
+        </Anchor>
       </Group>
     </UnstyledButton>
   ));
@@ -111,16 +112,16 @@ export function HeaderWithMenus() {
                   alt="logo"
                 />
               </Link>
+              <Anchor component={Link} href="/stats" key="stats" className={classes.link}>
+                Stat Visualization
+              </Anchor>
               <Group h="100%" gap={0} visibleFrom="md">
-                {/* <Anchor component={Link} href="/" key="home" className={classes.link}> */}
-                {/*   Home */}
-                {/* </Anchor> */}
                 <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
                   <HoverCard.Target>
-                    <Anchor component={Link} href="/stats" key="stats" className={classes.link}>
+                    <Anchor component={Link} href="/ml-predict" key="ml" className={classes.link}>
                       <Center inline>
                         <Box component="span" mr={5}>
-                          Stat Visualization
+                          Machine Learning Research
                         </Box>
                         <IconChevronDown
                           style={{ width: rem(16), height: rem(16) }}
@@ -132,10 +133,7 @@ export function HeaderWithMenus() {
 
                   <HoverCard.Dropdown style={{ overflow: 'hidden' }}>
                     <Group justify="space-between" px="md">
-                      <Text fw={500}>Features</Text>
-                      <Anchor href="#" fz="xs">
-                        View all
-                      </Anchor>
+                      <Text fw={500}>Jupyter Notebooks</Text>
                     </Group>
 
                     <Divider my="sm" />
@@ -148,32 +146,20 @@ export function HeaderWithMenus() {
                       <Group justify="space-between">
                         <div>
                           <Text fw={500} fz="sm">
-                            Get started
+                            Open source
                           </Text>
-                          <Text size="xs" c="dimmed">
-                            Their food sources have decreased, and their numbers
-                          </Text>
+                          <Text size="xs" c="dimmed"></Text>
                         </div>
-                        <Button variant="default">Get started</Button>
+                        <Button variant="default">Learn More</Button>
                       </Group>
                     </div>
                   </HoverCard.Dropdown>
                 </HoverCard>
 
-                <Anchor
-                  component={Link}
-                  href="/feature-engineering"
-                  key="feature-engineering"
-                  className={classes.link}
-                >
-                  Feature Engineering
-                </Anchor>
-                <Anchor component={Link} href="/predict" key="predict" className={classes.link}>
-                  Predict
-                </Anchor>
-                <Anchor component={Link} href="/blog" key="blog" className={classes.link}>
-                  Blog
-                </Anchor>
+                {/* todo: implement blogs/post page */}
+                {/* <Anchor component={Link} href="/blog" key="blog" className={classes.link}> */}
+                {/*   Blog */}
+                {/* </Anchor> */}
               </Group>
             </Group>
 
@@ -186,7 +172,7 @@ export function HeaderWithMenus() {
                 className={classes.control}
                 leftSection={<IconBrandGraphql size={20} />}
               >
-                GraphQL
+                Graph<i>i</i>QL
               </Button>
               <ActionIcon
                 className={classes.control}
@@ -203,53 +189,53 @@ export function HeaderWithMenus() {
               <ColorSchemeToggle />
             </Group>
 
-            <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="md" />
+            {/* todo: drawers for mobile */}
+            {/* <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="md" /> */}
           </Group>
         </header>
         {/* Not yet implemented for mobile */}
-        <Drawer
-          opened={drawerOpened}
-          onClose={closeDrawer}
-          size="100%"
-          padding="md"
-          title="Navigation"
-          hiddenFrom="sm"
-          zIndex={1000000}
-        >
-          <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
-            <Divider my="sm" />
-
-            <a href="#" className={classes.link}>
-              Home
-            </a>
-            <UnstyledButton className={classes.link} onClick={toggleLinks}>
-              <Center inline>
-                <Box component="span" mr={5}>
-                  Features
-                </Box>
-                <IconChevronDown
-                  style={{ width: rem(16), height: rem(16) }}
-                  color={theme.colors.blue[6]}
-                />
-              </Center>
-            </UnstyledButton>
-            <Collapse in={linksOpened}>{links}</Collapse>
-            <a href="#" className={classes.link}>
-              Learn
-            </a>
-            <a href="#" className={classes.link}>
-              Academy
-            </a>
-
-            <Divider my="sm" />
-
-            <Group justify="center" grow pb="xl" px="md">
-              <Button variant="default">Log in</Button>
-              <Button>Sign up</Button>
-            </Group>
-          </ScrollArea>
-        </Drawer>
-        {/* </Group> */}
+        {/* <Drawer */}
+        {/*   opened={drawerOpened} */}
+        {/*   onClose={closeDrawer} */}
+        {/*   size="100%" */}
+        {/*   padding="md" */}
+        {/*   title="Navigation" */}
+        {/*   hiddenFrom="sm" */}
+        {/*   zIndex={1000000} */}
+        {/* > */}
+        {/*   <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md"> */}
+        {/*     <Divider my="sm" /> */}
+        {/**/}
+        {/*     <a href="#" className={classes.link}> */}
+        {/*       Home */}
+        {/*     </a> */}
+        {/*     <UnstyledButton className={classes.link} onClick={toggleLinks}> */}
+        {/*       <Center inline> */}
+        {/*         <Box component="span" mr={5}> */}
+        {/*           Features */}
+        {/*         </Box> */}
+        {/*         <IconChevronDown */}
+        {/*           style={{ width: rem(16), height: rem(16) }} */}
+        {/*           color={theme.colors.blue[6]} */}
+        {/*         /> */}
+        {/*       </Center> */}
+        {/*     </UnstyledButton> */}
+        {/*     <Collapse in={linksOpened}>{links}</Collapse> */}
+        {/*     <a href="#" className={classes.link}> */}
+        {/*       Learn */}
+        {/*     </a> */}
+        {/*     <a href="#" className={classes.link}> */}
+        {/*       Academy */}
+        {/*     </a> */}
+        {/**/}
+        {/*     <Divider my="sm" /> */}
+        {/**/}
+        {/*     <Group justify="center" grow pb="xl" px="md"> */}
+        {/*       <Button variant="default">Log in</Button> */}
+        {/*       <Button>Sign up</Button> */}
+        {/*     </Group> */}
+        {/*   </ScrollArea> */}
+        {/* </Drawer> */}
       </Container>
     </Box>
   );

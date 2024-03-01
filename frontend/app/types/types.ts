@@ -1,9 +1,11 @@
 import {
   PlayerPerformanceEdge,
   PlayerPerformance,
+  Match,
   Model,
   TeamName,
   PlayerPerformanceConnection,
+  Player,
 } from '@/gql/graphql';
 
 type Modify<T, R> = Omit<T, keyof R> & R;
@@ -18,12 +20,22 @@ export interface PlayerPerformanceEdgeOpt
   extends Modify<
     PlayerPerformanceEdge,
     {
-      node?: Partial<PlayerPerformance>;
+      node?: PlayerPerformanceTable;
     }
   > {}
 
+export interface MatchTable extends Partial<Match> {}
 export interface TeamNameTable extends Partial<TeamName> {}
-export interface PlayerPerformanceTable extends Partial<PlayerPerformance> {}
+export interface PlayerInfoTable extends Partial<Player> {}
+export interface PlayerPerformanceTable
+  extends Modify<
+    Partial<PlayerPerformance>,
+    {
+      match?: MatchTable;
+      playerInfo?: PlayerInfoTable;
+      team?: TeamNameTable;
+    }
+  > {}
 export interface ModelTable
   extends Modify<
     Partial<Model>,
@@ -35,4 +47,11 @@ export interface ModelTable
     }
   > {}
 
-export type TableData = PlayerPerformanceTable | ModelTable;
+export interface ChartData
+  extends Modify<
+    Partial<PlayerPerformanceTable>,
+    {
+      playerName?: string;
+      date?: Date;
+    }
+  > {}

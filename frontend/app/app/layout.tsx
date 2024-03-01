@@ -1,7 +1,8 @@
 import '@mantine/core/styles.layer.css';
 import 'mantine-datatable/styles.layer.css';
+import '@mantine/dates/styles.css';
 import * as React from 'react';
-import { AppShell, AppShellHeader, Group, MantineProvider, ColorSchemeScript } from '@mantine/core';
+import { AppShell, AppShellHeader, MantineProvider, ColorSchemeScript } from '@mantine/core';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 import { theme } from '../theme';
