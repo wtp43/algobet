@@ -45,20 +45,18 @@ export const recentBoxscoreQueryDocument = graphql(/* GraphQL */ `
             playerInfo {
               playerName
             }
-            ast
-            blkPct
-            drb
+            pts
             fg
-            fga
+            threep
             ft
+            ast
+            drb
+            tov
+            stl
+            fga
             fta
             orb
-            pts
-            sp
-            stl
-            threep
             threepa
-            tov
             trb
           }
         }
@@ -69,21 +67,18 @@ export const recentBoxscoreQueryDocument = graphql(/* GraphQL */ `
             playerInfo {
               playerName
             }
-            playerId
-            ast
-            blkPct
-            drb
+            pts
             fg
-            fga
+            threep
             ft
+            ast
+            drb
+            tov
+            stl
+            fga
             fta
             orb
-            pts
-            sp
-            stl
-            threep
             threepa
-            tov
             trb
           }
         }
