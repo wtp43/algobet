@@ -1,0 +1,37 @@
+.legend {
+  line-height: 0.9em;
+  color: #efefef;
+  font-size: 10px;
+  font-family: arial;
+  padding: 10px 10px;
+  float: left;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  /* margin: 5px 5px; */
+
+  top: 60px;
+  height: 100%;
+  width: 100%;
+}
+.title {
+  font-size: 12px;
+  margin-bottom: 10px;
+  font-weight: 100;
+}
+
+.legends2 {
+  position: absolute;
+
+  top: 20px;
+  right: 20px;
+  font-family: arial;
+  font-weight: 900;
+  background-color: #052545;
+  border-radius: 8px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+.chart h2 {
+  top: 60px;
+  margin-left: 10px;
+}

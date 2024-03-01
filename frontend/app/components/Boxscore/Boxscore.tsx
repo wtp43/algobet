@@ -9,6 +9,8 @@ import '@mantine/carousel/styles.css';
 import { Group, Button, Container, Paper } from '@mantine/core';
 import { PlayerPerformanceTable } from '@/types/types';
 import classes from './Boxscore.module.css';
+import { colInfo } from '@/constants/constants';
+// TODO: Migrate to PrimeReact Tables
 
 export const dynamic = 'auto';
 
@@ -22,9 +24,6 @@ export function Boxscore({ data }: BoxscoreProps) {
     direction: 'desc',
   });
 
-  // const [records, setRecords] = useState<any[]>(
-  //   flattenPlayers(data.getMatches[0]?.homePlayers?.edges)
-  // );
   const [records, setRecords] = useState<PlayerPerformanceTable[]>(data);
 
   useEffect(() => {
@@ -44,16 +43,18 @@ export function Boxscore({ data }: BoxscoreProps) {
     const keys = Object.keys(row);
     for (let i = 0; i < keys.length; i += 1) {
       if (keys[i] === 'playerName') {
-        columns.push({
+        columns.unshift({
           accessor: keys[i],
+          title: colInfo[keys[i] as keyof typeof colInfo].name,
           sortable: true,
-          ellipsis: false,
+          noWrap: true,
           // toggleable: true,
           width: '10%',
         });
       } else {
         columns.push({
           accessor: keys[i],
+          title: colInfo[keys[i] as keyof typeof colInfo].name,
           sortable: true,
           ellipsis: true,
           // toggleable: true,
@@ -63,22 +64,18 @@ export function Boxscore({ data }: BoxscoreProps) {
     }
     return columns;
   }
-  const key = 'toggle-home-players-columns';
+  const key = 'toggle-players-columns';
 
-  const { effectiveColumns, resetColumnsWidth, resetColumnsToggle } =
-    useDataTableColumns<PlayerPerformanceTable>({
-      key,
-      columns: records ? getColumns(records[0]) : [],
-    });
-  console.count('counter');
+  const { effectiveColumns } = useDataTableColumns<PlayerPerformanceTable>({
+    key,
+    columns: records ? getColumns(records[0]) : [],
+  });
   return (
     <Container size="80%" className={classes.boxscoreContainer}>
-      {/* <Carousel> */}
-      {/* <Carousel.Slide> */}
       <div>
         <DataTable
           textSelectionDisabled
-          height={200}
+          height={240}
           fz="xs"
           highlightOnHover
           borderRadius="sm"
@@ -88,21 +85,11 @@ export function Boxscore({ data }: BoxscoreProps) {
           storeColumnsKey={key}
           columns={effectiveColumns}
           records={records}
-          // defaultColumnRender={(row, _, accessor) => {
-          //   const datatype = row[accessor as keyof typeof row];
-          //   // return typeof data === 'string' ? data : dayjs(data);
-          //   return datatype;
-          // }}
           idAccessor="playerName"
           sortStatus={sortStatus}
           onSortStatusChange={handleSortStatusChange}
         />
-        {/* <Group justify="right"> */}
-        {/*   <Button onClick={resetColumnsWidth}>Reset</Button> */}
-        {/* </Group> */}
       </div>
-      {/*   </Carousel.Slide> */}
-      {/* </Carousel> */}
     </Container>
   );
 }

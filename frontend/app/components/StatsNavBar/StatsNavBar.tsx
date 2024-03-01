@@ -1,12 +1,19 @@
 'use client';
 
-import { ScrollArea } from '@mantine/core';
-import { IconNotes, IconGauge, IconPresentationAnalytics } from '@tabler/icons-react';
+import { Code, Group, ScrollArea } from '@mantine/core';
+import {
+  IconNotes,
+  IconGauge,
+  IconPresentationAnalytics,
+  IconSwitchHorizontal,
+  IconLogout,
+} from '@tabler/icons-react';
+import { useState } from 'react';
 import { LinksGroup } from '../NavbarLinksGroup/NavbarLinksGroup';
 import classes from './StatsNavBar.module.css';
 
 const navbarItems = [
-  { label: 'Dashboard', icon: IconGauge, link: '/stats/dashboard' },
+  { label: 'Dashboard', icon: IconGauge, link: '/stats' },
   { label: 'Box Scores', icon: IconPresentationAnalytics, link: '/stats/boxscores' },
   {
     label: 'Player Stats',
@@ -29,4 +36,24 @@ export function StatsNavBar() {
       </ScrollArea>
     </nav>
   );
+
+  // const [active, setActive] = useState('Dashboard');
+  //
+  // const links = navbarItems.map((item: any) => (
+  //   <a
+  //     className={classes.link}
+  //     data-active={item.label === active || undefined}
+  //     href={item.link}
+  //     key={item.label}
+  //     onClick={(event) => {
+  //       event.preventDefault();
+  //       setActive(item.label);
+  //     }}
+  //   >
+  //     <item.icon className={classes.linkIcon} stroke={1.5} />
+  //     <span>{item.label}</span>
+  //   </a>
+  // ));
+  //
+  // return <nav className={classes.navbarMain}>{links}</nav>;
 }

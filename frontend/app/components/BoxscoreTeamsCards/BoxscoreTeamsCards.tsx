@@ -17,11 +17,6 @@ export function BoxscoreTeamsCards({ data }: BoxscoreTeamsCardsProps) {
     <Container size="100%" px={0}>
       {/* <Group justify="space-between" h="100%"> */}
       {/* <Paper withBorder radius="md" className={classes.homeCard}> */}
-      <Center>
-        <Badge variant="light" size="lg">
-          {data?.date}
-        </Badge>
-      </Center>
       <Group justify="space-between" className={classes.cardContainer}>
         <Flex direction="row">
           <Image
@@ -44,7 +39,15 @@ export function BoxscoreTeamsCards({ data }: BoxscoreTeamsCardsProps) {
           </Title>
         </Flex>
         <Stack>
-          <Text size="3rem">-</Text>
+          <Center>
+            <Text size="3rem">-</Text>
+          </Center>
+
+          <Center>
+            <Badge variant="light" size="lg">
+              {data?.date}
+            </Badge>
+          </Center>
         </Stack>
         <Flex direction="row-reverse">
           <Image

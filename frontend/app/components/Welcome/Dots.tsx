@@ -17,7 +17,9 @@ export function Dots({ size = 285, radius = 2.5, x, y, ...others }: DotsProps) {
       {...others}
     >
       {[...Array(x)].map((_, i) =>
-        [...Array(y)].map((h, j) => <rect width="5" height="5" x={i * 20} y={j * 20} rx={radius} />)
+        [...Array(y)].map((h, j) => (
+          <rect key={`dots-${i}-${j}`} width="5" height="5" x={i * 20} y={j * 20} rx={radius} />
+        ))
       )}
     </svg>
   );

@@ -4,13 +4,10 @@ import React from 'react';
 import { AppShellNavbar, AppShellMain, AppShell, AppShellHeader } from '@mantine/core';
 import { StatsNavBar } from '@/components/StatsNavBar/StatsNavBar';
 
-export default async function StatLayout({ children }: { children: any }) {
+export default async function MlLayout({ children }: { children: any }) {
   return (
     <>
-      <AppShell navbar={{ width: 200, breakpoint: 'sm' }} padding="md">
-        <AppShellNavbar>
-          <StatsNavBar />
-        </AppShellNavbar>
+      <AppShell padding="md">
         <AppShellMain>{children}</AppShellMain>
       </AppShell>
     </>
