@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     BACKEND_CORS_ORIGINS: list[str] = [
         "http://localhost:3000",
         "https://www.algobet.app",
+        "https://algobet.app",
         "nextjs-production-d0d2.up.railway.app",
     ]
 
